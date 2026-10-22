@@ -1,0 +1,19 @@
+{
+  "name": "job-portal-fullstack",
+  "version": "1.0.0",
+  "description": "Full Stack Job Portal with Authentication, Testing, and Deployment",
+  "scripts": {
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "server": "cd backend && npm start",
+    "client": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "cd backend && npm test",
+    "seed": "cd backend && npm run seed"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": ["job-portal", "react", "express", "mongodb", "jwt", "fullstack"],
+  "author": "FullStack Dev",
+  "license": "ISC"
+}
