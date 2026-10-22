@@ -8,7 +8,7 @@ const connectDB = async () => {
   
   try {
     const conn = await mongoose.connect(uri, {
-      serverSelectionTimeoutMS: 2500,
+      serverSelectionTimeoutMS: 8000,
     });
     isConnected = true;
     useMemoryStore = false;

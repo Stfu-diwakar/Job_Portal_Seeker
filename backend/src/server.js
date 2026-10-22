@@ -28,10 +28,15 @@ app.get('/', (req, res) => {
   });
 });
 
-// Mount Routes
+// Mount Routes with /api prefix (standard REST)
 app.use('/api/auth', authRoutes);
 app.use('/api/jobs', jobRoutes);
 app.use('/api/applications', applicationRoutes);
+
+// Dual-mount at root paths for maximum resilience (handles requests with or without /api)
+app.use('/auth', authRoutes);
+app.use('/jobs', jobRoutes);
+app.use('/applications', applicationRoutes);
 
 // 404 Route Not Found
 app.use((req, res, next) => {
