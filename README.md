@@ -1,5 +1,5 @@
 # Seeker — High-Velocity Tech Career Platform
-
+**Live**: [https://job-portal-seeker-two.vercel.app/](https://job-portal-seeker-two.vercel.app/)
 A complete, production-grade Full Stack Job Portal Application built with **React 18, Node.js, Express.js, MongoDB (Mongoose), JWT Authentication, and bcryptjs**.
 
 Created by **Diwakar Jha**:
