@@ -1,105 +1,256 @@
-# Seeker — High-Velocity Tech Career Platform
-**Live**: [https://job-portal-seeker-two.vercel.app/](https://job-portal-seeker-two.vercel.app/)
----
-A complete, production-grade Full Stack Job Portal Application built with **React 18, Node.js, Express.js, MongoDB (Mongoose), JWT Authentication, and bcryptjs**.
----
-Created by **Diwakar Jha**:
-- 🌐 **Portfolio**: [portfolio-bpd3.onrender.com](https://portfolio-bpd3.onrender.com/)
-- 💻 **GitHub**: [github.com/Stfu-diwakar](https://github.com/Stfu-diwakar)
-- 💼 **LinkedIn**: [linkedin.com/in/diwakar-jha-064130229](https://www.linkedin.com/in/diwakar-jha-064130229/)
+# Seeker — Job Portal Platform
+
+<p align="center">
+  <strong>A full-stack job portal for discovering opportunities, applying for jobs, and managing recruitment workflows.</strong>
+  <br />
+  <a href="https://job-portal-seeker-two.vercel.app/">Live Demo</a> ·
+  <a href="https://github.com/Stfu-diwakar/Job_Portal_Seeker">Source Code</a>
+</p>
 
 ---
 
-## 1. System Architecture
+## Overview
+
+**Seeker** is a full-stack job portal built with React and Node.js. It provides separate experiences for job seekers and recruiters, with JWT-based authentication and a REST API for jobs and applications.
+
+The frontend is built with React, Vite, Bootstrap, and Lucide icons. The backend uses Express and Mongoose, with MongoDB support.
+
+## Features
+
+### For job seekers
+- Create an account and sign in securely.
+- Browse available job listings and view job details.
+- Search and filter opportunities by relevant criteria.
+- Apply for jobs with application details.
+- Track submitted applications and their statuses.
+
+### For recruiters
+- Sign in with a recruiter account.
+- Post new job listings.
+- Review applications associated with job listings.
+- Update application statuses.
+
+### Platform
+- Role-aware, protected application routes.
+- JWT authentication with bearer tokens.
+- Password hashing using bcryptjs.
+- REST API with centralized error handling.
+- Responsive React interface with an interactive visual background.
+- Demo data for trying the application.
+
+## Preview
+
+<p align="center">
+  <a href="https://job-portal-seeker-two.vercel.app/">
+    <img src="https://img.shields.io/badge/Visit%20Live%20Application-Open%20Seeker-6C5CE7?style=for-the-badge" alt="Visit Seeker live application" />
+  </a>
+</p>
+
+## Tech Stack
+
+| Area | Technologies |
+|---|---|
+| Frontend | React 18, Vite, React Router |
+| UI | Bootstrap 5, Lucide React, CSS |
+| HTTP client | Axios |
+| Backend | Node.js, Express.js |
+| Database | MongoDB, Mongoose |
+| Authentication | JSON Web Tokens (JWT), bcryptjs |
+| Testing | Jest, Supertest |
+| Deployment configuration | Vercel (frontend), Render (backend) |
+
+## Architecture
 
 ```text
-       React Frontend (Vite + Bootstrap 5 + Magnetic Canvas)
-                               │
-                               ▼ [REST API: JSON & Bearer Tokens]
-                  Node.js + Express.js API Server
-                               │
-                               ▼
-               JWT Authentication & Role Middleware
-                               │
-                               ▼
-             MongoDB Database / Mongoose Document Store
+┌─────────────────────────────────────┐
+│         React + Vite Frontend       │
+│  Pages · Components · React Router  │
+└──────────────────┬──────────────────┘
+                   │ HTTP / JSON
+                   │ Bearer JWT
+┌──────────────────▼──────────────────┐
+│          Express REST API           │
+│  Auth · Jobs · Applications         │
+│  Middleware · Error Handling        │
+└──────────────────┬──────────────────┘
+                   │ Mongoose
+┌──────────────────▼──────────────────┐
+│              MongoDB                │
+│       Users · Jobs · Applications   │
+└─────────────────────────────────────┘
 ```
 
----
+## Run Locally
 
-## 2. Technology Stack & Design System
+### 1. Prerequisites
 
-| Layer | Technology | Details |
-| :--- | :--- | :--- |
-| **Frontend** | React 18, Bootstrap 5, Lucide Icons | Premium Obsidian Theme, High-Contrast Typography, Magnetic Mouse Physics Canvas, 3D Tilt Cards |
-| **Backend** | Node.js, Express.js | Modular REST Architecture, Centralized Error Handling, CORS |
-| **Database** | MongoDB / Mongoose | Production Atlas support with integrated zero-config document persistence fallback |
-| **Authentication** | JSON Web Tokens (`jsonwebtoken`) | Stateless Bearer token verification, 1-day expiration |
-| **Password Security** | `bcryptjs` | 10 salt rounds cryptographic hashing |
-| **Testing** | Postman & Jest / Supertest | 13 automated end-to-end tests passing |
-| **Deployment** | Render & Vercel | `render.yaml` and `vercel.json` included |
+- Node.js (LTS recommended)
+- npm
+- MongoDB (local instance or MongoDB Atlas)
 
----
+### 2. Clone the repository
 
-## 3. Complete User Flow
-
-```text
-Registration ──► Login ──► JWT Token Generation ──► Dashboard Access
-                                                          │
-                                                          ▼
-                                                      View Jobs
-                                                          │
-                                                          ▼
-                                                   Apply for Jobs
-                                                          │
-                                                          ▼
-                                              Real-Time Application Status
-                                 (Submitted ➔ In Review ➔ Shortlisted ➔ Accepted)
+```bash
+git clone https://github.com/Stfu-diwakar/Job_Portal_Seeker.git
+cd Job_Portal_Seeker
 ```
 
----
+### 3. Install dependencies
 
-## 4. Quickstart Guide (Local Development)
+From the project root:
 
-### Run Application:
+```bash
+npm run install:all
+```
+
+This installs the root, backend, and frontend dependencies.
+
+### 4. Configure environment variables
+
+Create a `.env` file inside the `backend` directory. You can use `backend/.env.example` as a starting point:
+
+```env
+PORT=5000
+MONGO_URI=mongodb://127.0.0.1:27017/jobportal
+JWT_SECRET=replace_with_a_long_random_secret
+NODE_ENV=development
+```
+
+Use your own strong, private `JWT_SECRET`. Do not commit real credentials or environment files to GitHub.
+
+For the frontend, the API defaults to `http://localhost:5000/api`. If your backend runs elsewhere, create `frontend/.env` and set:
+
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+The frontend appends `/api` automatically when needed.
+
+### 5. Start the application
+
+From the project root:
+
 ```bash
 npm run dev
 ```
 
-- **Frontend Application**: [http://localhost:3000](http://localhost:3000)
-- **Backend API**: [http://localhost:5000/api](http://localhost:5000/api)
+| Service | Local URL |
+|---|---|
+| Frontend | http://localhost:3000 |
+| Backend health check | http://localhost:5000/ |
+| API base | http://localhost:5000/api |
 
-### Demo Credentials:
-- **Jobseeker**: `alex@example.com` / `password123`
-- **Recruiter**: `recruiter@techjobs.io` / `password123`
+To run either service separately:
 
----
+```bash
+npm run server
+npm run client
+```
 
-## 5. End-to-End Automated Testing
+## Demo Accounts
 
-Run the test suite:
+The project includes seeded demo accounts for exploring the application:
+
+| Role | Email | Password |
+|---|---|---|
+| Job seeker | alex@example.com | password123 |
+| Recruiter | recruiter@techjobs.io | password123 |
+
+These are **demo credentials only**. Do not use them for a production deployment or store real personal information in a demo environment. Seed data is initialized when the jobs collection is empty.
+
+> **Database note:** The backend contains a fallback data-store mode when MongoDB cannot be reached. Treat fallback data as temporary; use a properly configured MongoDB database for persistent data.
+
+## API Overview
+
+The API is mounted under `/api`.
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| POST | `/api/auth/register` | Register an account |
+| POST | `/api/auth/login` | Sign in and receive a JWT |
+| GET | `/api/auth/me` | Get the authenticated user's profile |
+| GET | `/api/jobs` | List jobs; supports query filters |
+| GET | `/api/jobs/:id` | Get a job by ID |
+| POST | `/api/jobs` | Create a job (authenticated) |
+| DELETE | `/api/jobs/:id` | Delete a job (authenticated) |
+| POST | `/api/applications` | Submit a job application |
+| GET | `/api/applications/my` | List the current user's applications |
+| GET | `/api/applications/job/:jobId` | List applications for a job |
+| PUT | `/api/applications/:id/status` | Update an application status |
+
+Protected endpoints expect this header:
+
+```http
+Authorization: Bearer <your-jwt-token>
+```
+
+Job listing filters include `search`, `category`, `type`, `experience`, `location`, and `featured`.
+
+## Tests
+
+Run the backend test suite from the project root:
+
 ```bash
 npm test
 ```
 
-**13 / 13 Tests Passing:**
-- `√ 1. Register User`: should register a new user successfully and return 201
-- `√ 1b. Duplicate Email`: should reject registration if email is already taken (400)
-- `√ 1c. Empty Fields`: should reject registration if fields are missing (400)
-- `√ 2. Login User`: should authenticate user and generate valid JWT token (200)
-- `√ 3. Invalid Password`: should return 401 Wrong Password for incorrect credentials
-- `√ 3b. Invalid User`: should return 401 Invalid User if user email is not found
-- `√ 4. Access Dashboard`: should allow access to protected profile with valid JWT token
-- `√ 5. Access Dashboard Without Login`: should reject request without token (401)
-- `√ 5b. Invalid Token`: should reject request with tampered/expired token (401)
-- `√ 6. View Jobs`: should fetch list of available job listings (200)
-- `√ 7. Apply Job`: should submit application and save to database (201)
-- `√ 7b. Prevent Duplicate Application`: should reject second application for same job
-- `√ 8. Fetch My Applications`: should return applications submitted by current user (200)
+The test command uses Jest and runs tests serially with open-handle detection.
+
+## Deployment
+
+The repository includes a `render.yaml` blueprint for the backend service.
+
+### Backend — Render
+Configure the backend service with:
+- Root directory: `backend`
+- Build command: `npm install`
+- Start command: `npm start`
+- Environment variables: `MONGO_URI`, `JWT_SECRET`, `NODE_ENV=production`
+
+Use a persistent MongoDB database such as MongoDB Atlas and set a strong secret in the hosting provider's environment settings.
+
+### Frontend — Vercel
+Deploy the `frontend` directory as the Vercel project root, using the Vite framework preset. Set `VITE_API_URL` to the deployed backend origin (the frontend will append `/api`).
+
+The public demo is available at **[job-portal-seeker-two.vercel.app](https://job-portal-seeker-two.vercel.app/)**.
+
+## Project Structure
+
+```text
+Job_Portal_Seeker/
+├── backend/
+│   ├── src/
+│   │   ├── config/          # Database connection
+│   │   ├── data/            # Seed data
+│   │   ├── middleware/      # Authentication and error handling
+│   │   ├── models/          # Mongoose models
+│   │   ├── routes/          # Auth, jobs, applications APIs
+│   │   └── server.js
+│   └── package.json
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── context/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── App.jsx
+│   └── package.json
+├── render.yaml
+└── package.json
+```
+
+## Author
+
+**Diwakar Jha**
+
+- Portfolio: [portfolio-bpd3.onrender.com](https://portfolio-bpd3.onrender.com/)
+- GitHub: [@Stfu-diwakar](https://github.com/Stfu-diwakar)
+- LinkedIn: [Diwakar Jha](https://www.linkedin.com/in/diwakar-jha-064130229/)
 
 ---
 
-## 6. Postman API Collection
-
-📁 [`postman/Job_Portal_API.postman_collection.json`](file:///a:/CU/SEM-3/TT-02/E06/postman/Job_Portal_API.postman_collection.json)
-Import into Postman to test all authentication, job listing, and application tracking endpoints.
+<p align="center">
+  Built with React, Node.js, and MongoDB.
+  <br />
+  <a href="https://job-portal-seeker-two.vercel.app/">Explore Seeker</a>
+</p>
